@@ -1,5 +1,4 @@
 Flask
 demucs @ git+https://github.com/facebookresearch/demucs
 uvicorn
-hypercorn
 Werkzeug==2.2.2
