@@ -54,7 +54,7 @@ def copy_process_streams(process: sp.Popen):
             buf = raw_buf.decode()
             std.write(buf)
             std.flush()
-
+            
 def separate(inp=None, outp=None):
     inp = inp or in_path
     outp = outp or out_path
@@ -75,10 +75,12 @@ def separate(inp=None, outp=None):
     print('\n'.join(files))
     print("With command: ", " ".join(cmd))
     p = sp.Popen(cmd + files, stdout=sp.PIPE, stderr=sp.PIPE)
-    copy_process_streams(p)
     p.wait()
     if p.returncode != 0:
-        print("Command failed, something went wrong.")
+        return {"message": "Command failed, something went wrong."}
+    else:
+        separated_files = [os.path.join(outp, f"{file.stem}_vocals{file.suffix}") for file in files]
+        return {"message": "Separation successful.", "separated_files": separated_files}
 
 def from_upload():
     in_path = '/tmp/uploads/demucs/tmp_in/'
