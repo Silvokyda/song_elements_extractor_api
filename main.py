@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request, jsonify
-from helper import separate
+from helper import separate as separate_audio
 
 app = Flask(__name__)
 
@@ -36,7 +36,7 @@ def upload_file():
 
 @app.route('/separate', methods=['GET'])
 def separate():
-    result = separate(in_path, out_path)
+    result = separate_audio(in_path, out_path)
     return jsonify(result)
 
 if __name__ == "__main__":
