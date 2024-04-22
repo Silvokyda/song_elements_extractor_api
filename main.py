@@ -20,6 +20,9 @@ int24 = False
 in_path = '/uploads/demucs/tmp_in/'
 out_path = '/uploads/demucs/separated/'
 
+os.makedirs(in_path, exist_ok=True)
+os.makedirs(out_path, exist_ok=True)
+
 def find_files(in_path):
     out = []
     for file in os.listdir(in_path):
