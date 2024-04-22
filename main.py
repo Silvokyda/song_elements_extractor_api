@@ -60,8 +60,9 @@ def upload_file():
     uploaded_file = request.files['file']
     if uploaded_file.filename == '':
         return jsonify({"error": "No file selected"}), 400
-    uploaded_file.save(os.path.join(in_path, uploaded_file.filename))
-    return jsonify({"message": "File uploaded successfully"})
+    file_path = os.path.join(in_path, uploaded_file.filename)
+    uploaded_file.save(file_path)
+    return jsonify({"message": "File uploaded successfully", "file_path": file_path})
 
 @app.route('/separate', methods=['GET'])
 def separate():
