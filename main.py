@@ -6,7 +6,7 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-# subprocess.run(["python3", "-m", "pip", "install", "-U", "git+https://github.com/facebookresearch/demucs#egg=demucs"])
+subprocess.run(["python3", "-m", "pip", "install", "-U", "git+https://github.com/facebookresearch/demucs#egg=demucs"])
 
 model = "htdemucs"
 extensions = ["mp3", "wav", "ogg", "flac"]
@@ -46,10 +46,10 @@ def separate_vocals(inp=None, outp=None):
     if not files:
         return {"message": "No valid audio files in the provided directory"}
     process = subprocess.run(cmd + files, capture_output=True)
-    if process.returncode != 0:
-        return {"message": "Command failed, something went wrong."}
+     if process.returncode != 0:
+        return {"message": "Command failed", "error_output": process.stderr}
     else:
-        return {"message": "Separation successful."}
+        return {"message": "Separation successful", "output": process.stdout}
 
 @app.route("/")
 def hello_world():
