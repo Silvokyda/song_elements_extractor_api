@@ -6,6 +6,21 @@ import os
 from typing import Dict, Tuple, Optional, IO
 import demucs.separate
 
+model = "htdemucs"
+extensions = ["mp3", "wav", "ogg", "flac"]
+two_stems = None
+
+mp3 = True
+mp3_rate = 320
+float32 = False
+int24 = False
+
+in_path = '/tmp/uploads/demucs/tmp_in/'
+out_path = '/tmp/uploads/demucs/separated/'
+
+os.makedirs(in_path, exist_ok=True)
+os.makedirs(out_path, exist_ok=True)
+
 def find_files(in_path):
     out = []
     for file in Path(in_path).iterdir():
