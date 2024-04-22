@@ -50,10 +50,9 @@ def separate_vocals(inp=None, outp=None):
 
 @app.route("/")
 def hello_world():
-    """Example Hello World route."""
-    name = os.environ.get("NAME", "World")
-    return f"Hello {name}!"
+    return jsonify({"message": "hello world"})
 
+@app.route('/upload', methods=['POST'])
 def upload_file():
     uploaded_file = request.files['file']
     if uploaded_file.filename == '':
