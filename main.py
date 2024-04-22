@@ -46,7 +46,8 @@ def separate_vocals(inp=None, outp=None):
     if not files:
         return {"message": "No valid audio files in the provided directory"}
     process = subprocess.run(cmd + files, capture_output=True)
-     if process.returncode != 0:
+
+    if process.returncode != 0:
         return {"message": "Command failed", "error_output": process.stderr}
     else:
         return {"message": "Separation successful", "output": process.stdout}
@@ -60,8 +61,11 @@ def upload_file():
     uploaded_file = request.files['file']
     if uploaded_file.filename == '':
         return jsonify({"error": "No file selected"}), 400
+
     file_path = os.path.join(in_path, uploaded_file.filename)
+
     uploaded_file.save(file_path)
+
     return jsonify({"message": "File uploaded successfully", "file_path": file_path})
 
 @app.route('/separate', methods=['GET'])
