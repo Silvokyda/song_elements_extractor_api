@@ -17,8 +17,8 @@ mp3_rate = 320
 float32 = False
 int24 = False
 
-in_path = '/uploads/demucs/tmp_in/'
-out_path = '/uploads/demucs/separated/'
+in_path = '/tmp/uploads/demucs/tmp_in/'
+out_path = '/tmp/uploads/demucs/separated/'
 
 os.makedirs(in_path, exist_ok=True)
 os.makedirs(out_path, exist_ok=True)
